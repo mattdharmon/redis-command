@@ -1,4 +1,7 @@
 # redis-command package
+This package aims to allow the use of Redis commands to atom.
+
+This is my first open-source project. God help me and you.
 
 A short description of your package.
 

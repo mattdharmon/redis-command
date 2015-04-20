@@ -1,6 +1,9 @@
 RedisCommandView = require './redis-command-view'
 {CompositeDisposable} = require 'atom'
 
+#This is always needed.
+Redis = require 'redis'
+
 module.exports = RedisCommand =
   redisCommandView: null
   modalPanel: null
