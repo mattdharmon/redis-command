@@ -11,7 +11,7 @@ module.exports = RedisCommand =
 
   activate: (state) ->
     @redisCommandView = new RedisCommandView(state.redisCommandViewState)
-    @modalPanel = atom.workspace.addModalPanel(item: @redisCommandView.getElement(), visible: false)
+    @modalPanel = atom.workspace.addBottomPanel(item: @redisCommandView.getElement(), visible: false)
 
     # Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
     @subscriptions = new CompositeDisposable

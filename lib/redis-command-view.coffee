@@ -1,6 +1,5 @@
 module.exports =
 class RedisCommandView
-  @element = null
   constructor: (serializedState) ->
     # Create root element
     @element = document.createElement('div')
@@ -15,6 +14,8 @@ class RedisCommandView
         message = document.createElement('div')
         client.type key, (err, type) =>
           message.textContent = key + " : " + type
+          message.setAttribute 'data-key', key
+          message.setAttribute 'data-type', type
           message.classList.add('message')
           @element.appendChild(message)
 
