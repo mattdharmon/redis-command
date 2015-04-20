@@ -9,3 +9,7 @@
 # https://atom.io/docs/latest/behind-atom-keymaps-in-depth
 'atom-workspace':
   'ctrl-alt-o': 'redis-command:toggle'
+
+'activationCommands': {
+  'atom-workspace': 'redis-command:toggle'
+}
