@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "description": "A short description of your package",
   "activationCommands": {
-    "atom-workspace": "redis-command:toggle"
+    "atom-workspace": "redis-command:keys"
   },
   "repository": "https://github.com/atom/redis-command",
   "license": "MIT",
@@ -12,6 +12,7 @@
     "atom": ">=0.174.0 <2.0.0"
   },
   "dependencies": {
+    "atom-space-pen-views": "^2.0.0",
     "redis": "0.12.1"
   }
 }

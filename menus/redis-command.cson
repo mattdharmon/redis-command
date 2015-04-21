@@ -2,8 +2,8 @@
 'context-menu':
   'atom-text-editor': [
     {
-      'label': 'Toggle redis-command'
-      'command': 'redis-command:toggle'
+      'label': 'Keys redis-command'
+      'command': 'redis-command:keys'
     }
   ]
 'menu': [
@@ -13,8 +13,8 @@
       'label': 'redis-command'
       'submenu': [
         {
-          'label': 'Toggle'
-          'command': 'redis-command:toggle'
+          'label': 'Keys'
+          'command': 'redis-command:keys'
         }
       ]
     ]

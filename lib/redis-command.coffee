@@ -1,36 +1,37 @@
-RedisCommandView = require './redis-command-view'
 {CompositeDisposable} = require 'atom'
+# KeysView = require './views/results-view'
 
-#This is always needed.
-Redis = require 'redis'
+module.exports =
+  activate: ->
+    Keys = require './commands/keys'
 
-module.exports = RedisCommand =
-  redisCommandView: null
-  modalPanel: null
-  subscriptions: null
-
-  activate: (state) ->
-    @redisCommandView = new RedisCommandView(state.redisCommandViewState)
-    @modalPanel = atom.workspace.addBottomPanel(item: @redisCommandView.getElement(), visible: false)
-
-    # Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
     @subscriptions = new CompositeDisposable
 
-    # Register command that toggles this view
-    @subscriptions.add atom.commands.add 'atom-workspace', 'redis-command:toggle': => @toggle()
+    @subscriptions.add atom.commands.add 'atom-workspace', 'redis-command:keys', => @create Keys()
 
-  deactivate: ->
-    @modalPanel.destroy()
+  create: (view) ->
+    @view view
+    @toggle()
+
+  destroy: ->
+    @resultsPanel.destroy()
     @subscriptions.dispose()
-    @redisCommandView.destroy()
+    @resultsView.destroy()
 
-  serialize: ->
-    redisCommandViewState: @redisCommandView.serialize()
+  view: (view) ->
+    return if @resultsView?
+
+    @resultsView = view
+
+    @resultsPanel = atom.workspace.addBottomPanel(item: @resultsView.getContent(), visible: false)
+
+    @resultsPanel.onDidChangeVisible (visible) =>
+      if not visible
+        @resultsView.destroy()
+        @resultsView = null
 
   toggle: ->
-    console.log 'RedisCommand was toggled!'
-
-    if @modalPanel.isVisible()
-      @modalPanel.hide()
+    if @resultsPanel.isVisible()
+      @resultsPanel.hide()
     else
-      @modalPanel.show()
+      @resultsPanel.show()
